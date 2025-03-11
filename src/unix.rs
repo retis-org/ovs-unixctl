@@ -34,7 +34,7 @@ impl JsonStream for UnixJsonStream {
         let resp: R = Deserializer::from_reader(&mut self.sock)
             .into_iter()
             .next()
-            .ok_or_else(|| Error::Timeout)??;
+            .ok_or(Error::Timeout)??;
         Ok(resp)
     }
 }
